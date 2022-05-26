@@ -695,10 +695,9 @@ int XSpi_Transfer(XSpi *InstancePtr, u8 *SendBufPtr,
 			 * Transmit empty status bit
 			 */
 			do {
-				StatusReg = XSpi_IntrGetStatus(InstancePtr);
-			} while ((StatusReg & XSP_INTR_TX_EMPTY_MASK) == 0);
+				StatusReg = XSpi_GetStatusReg(InstancePtr);
+			} while ((StatusReg & XSP_SR_TX_EMPTY_MASK) == 0);
 
-			XSpi_IntrClear(InstancePtr,XSP_INTR_TX_EMPTY_MASK);
 
 
 			/*
